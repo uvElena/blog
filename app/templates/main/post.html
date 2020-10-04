@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    {{ post.title }}
+
+{% endblock %}
+
+{% block content_title %}
+
+    {{ post.title }}
+
+{% endblock %}
+
+{% block content %}
+
+    <article>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <h4 class="card-text">{{ post.author.full_name }}</h4>
+                </div>
+                <div class="col-md-7">
+                    <h4>
+                      {{ post.created.strftime('%d-%m-%Y') }} в {{ post.created.strftime('%H:%M') }} ID: {{ post.id }}
+                    </h4>
+                </div>
+            </div>
+            <p class="card-text">{{ post.body }}</p>
+            <img class="card-img-top" src="/static/img/{{ post.id }}.jpg" alt="">
+            <h4 class="card-text mt-4">Last updated 3 mins ago {{ post.created.strftime('%d-%m-%Y') }} в
+                {{ post.created.strftime('%H:%M') }}
+            </h4>
+            <h4>Теги:
+                <span class="badge badge-light mt-4">
+                    {% for tag in post.tags %}
+                        <a href="{{ url_for('main.index', tag=tag.value) }}">{{ tag.value }}</a>{{ "," if not loop.last else "" }}
+                    {% endfor %}
+                </span></h4>
+          </div>
+        </div>
+    </article>
+{% endblock %}

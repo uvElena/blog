@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+    Edit
+
+{% endblock %}
+
+{% block content_title %}
+
+    Edit post
+
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="post" enctype=multipart/form-data>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <div class="mt-2">
+                {{ form.title.label }}
+            </div>
+            <div class="mt-2">
+                {{ form.title(size=30, class_='form-control') }}
+            </div>
+            <div class="mt-2">
+                {{ form.image(size=30, class_='form-control' ) }}
+            </div>
+            {% if post.id %}
+                <div class="mt-2">
+                    <img class="card-img-top" src="/static/img/{{ post.id }}.jpg" alt="">
+                </div>
+            {% endif %}
+            <div class="mt-2">
+                {{ form.summary.label }}
+            </div>
+            <div class="mt-2">
+                {{ form.summary(size=30, class_='form-control', rows=8)}}
+            </div>
+            <div class="mt-2">
+                {{ form.body.label }}
+            </div>
+            <div class="mt-2">
+                {{ form.body(size=30, class_='form-control', rows=15) }}
+            </div>
+
+            {% for tag in form.tags %}
+            {{ tag.hidden_tag() }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">{{ tag.value(size=30, class_='form-control', readonly=True) }}</div>
+                        <div class="col">
+                            {{ tag.pop_tag(class_='btn btn-danger') }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-7">{{ form.new_tag(size=30, class_='form-control') }}</div>
+                    <div class="col">{{ form.append_tag(class_='btn btn-success') }}</div>
+                </div>
+            </div>
+            <div class="mt-3 text-right">
+                {{ form.submit(class_='btn btn-primary') }}
+            </div>
+        </div>
+    </form>
+{% endblock %}

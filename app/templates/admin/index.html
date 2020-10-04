@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    INDEX
+
+{% endblock %}
+
+{% block content_title %}
+
+        Posts
+
+{% endblock %}
+
+{% block content %}
+     <div class="my-4 text-right">
+        <a class="btn btn-primary" href="{{ url_for('admin.post_edit') }}">Add new post</a>
+    </div>
+    {% for post in posts.items %}
+        <article>
+            <div class="card mb-3 mt-4">
+              <div class="card-body">
+                <a href="{{ url_for('admin.post_edit', id=post.id) }}">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                </a>
+                <h4 class="card-text">{{ post.author.full_name}}  {{ post.created.strftime('%d-%m-%Y')}} в {{ post.created.strftime('%H:%M') }} id: {{ post.id }}</h4>
+              </div>
+
+            </div>
+        <div class="col">
+            <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                   <h5>Are you sure you want to delete this post?</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a type="button" class="btn btn-danger" href="{{ url_for('admin.post_delete', id=post.id) }}">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </article>
+    {% endfor %}
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+        <li class="page-item {{ '' if posts.has_prev else 'disabled' }} ">
+            <a class="page-link" href="{{ url_for('admin.index', **dict(request.args, page=posts.prev_num )) }}">Previous</a>
+        </li>
+        {% if posts.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('admin.index', **dict(request.args, page=posts.prev_num )) }}">{{ posts.prev_num }}</a>
+            </li>
+        {% endif %}
+
+        <li class="page-item active">
+            <a class="page-link" href="{{ url_for('admin.index', **dict(request.args, page=posts.page )) }}">{{ posts.page }}</a>
+        </li>
+
+        {% if posts.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('admin.index', **dict(request.args, page=posts.next_num)) }}">{{ posts.next_num }}</a>
+            </li>
+        {% endif %}
+
+        <li class="page-item {{ '' if posts.has_next else 'disabled' }} ">
+            {% if posts.has_next %}
+                <a class="page-link" href="{{ url_for('admin.index', **dict(request.args, page=posts.next_num)) }}">Next</a>
+            {% else %}<p class="page-link">Next</p>
+            {% endif %}
+        </li>
+        </ul>
+    </nav>
+
+{% endblock %}

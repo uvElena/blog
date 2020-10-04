@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Login
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="login pt-5">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                <div>
+                    {{ form.person_code.label }}
+                </div>
+                <div>
+                    {{ form.person_code(size=30, class_='form-control' + (' is-invalid'  if form.person_code.errors else '')) }}
+                </div>
+                <div class="invalid-feedback d-block">
+                    {{ ', '.join(form.person_code.errors) }}
+                </div>
+            </div>
+            <div>
+                <div>
+                    {{ form.password.label }}
+                </div>
+                <div>
+                    {{ form.password(size=30, class_='form-control' + (' is-invalid' if form.password.errors else '')) }}
+                </div>
+                <div class="invalid-feedback d-block">
+                    {{ ', '.join(form.password.errors) }}
+                </div>
+            </div>
+            <div class="my-4">
+                {{ form.submit(class_='btn btn-primary') }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
