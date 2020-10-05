@@ -51,16 +51,16 @@ class Post(ModelForm):
 
 
 class LoginForm(FlaskForm):
-    person_code = StringField('Person code', [validators.InputRequired()])
+    user_name = StringField('Person code', [validators.InputRequired()])
     password = PasswordField('Password', [validators.InputRequired()])
     submit = SubmitField('Login')
 
     def validate(self):
         if not super().validate():
             return False
-        user = models.User.query.filter(models.User.person_code == self.person_code.data).first()
+        user = models.User.query.filter(models.User.user_name == self.user_name.data).first()
         if user is None:
-            self.person_code.errors.append('Unknown person code')
+            self.user_name.errors.append('Unknown user name')
             return False
         if not check_password_hash(user.password, self.password.data):
             self.password.errors.append('Invalid password')

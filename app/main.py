@@ -38,7 +38,7 @@ def login():
     print(form.password.data)
     if form.validate_on_submit():
 
-        user = models.User.query.filter(models.User.person_code == form.person_code.data).one()
+        user = models.User.query.filter(models.User.user_name == form.user_name.data).one()
 
         login_user(user)
 

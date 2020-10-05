@@ -13,13 +13,13 @@
             {{ form.hidden_tag() }}
             <div>
                 <div>
-                    {{ form.person_code.label }}
+                    {{ form.user_name.label }}
                 </div>
                 <div>
-                    {{ form.person_code(size=30, class_='form-control' + (' is-invalid'  if form.person_code.errors else '')) }}
+                    {{ form.user_name(size=30, class_='form-control' + (' is-invalid'  if form.user_name.errors else '')) }}
                 </div>
                 <div class="invalid-feedback d-block">
-                    {{ ', '.join(form.person_code.errors) }}
+                    {{ ', '.join(form.user_name.errors) }}
                 </div>
             </div>
             <div>

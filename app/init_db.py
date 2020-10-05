@@ -31,7 +31,7 @@ with app.app_context():
     db.session.add(tag4)
 
     user = User(
-        person_code="user1",
+        user_name="user1",
         first_name="Фамилия",
         last_name="Имя",
         password=generate_password_hash("1234")

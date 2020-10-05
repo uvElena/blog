@@ -12,7 +12,7 @@ post_tag_table = db.Table(
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, name='PERSON ID', primary_key=True)
-    person_code = db.Column(db.String(255), name='Person Code', info={'label': 'Person Code'})
+    user_name = db.Column(db.String(255), name='User name', info={'label': 'User name'})
     first_name = db.Column(db.String(255), name='FIRST NAME', info={'label': 'First name'})
     last_name = db.Column(db.String(255), name='LAST NAME', info={'label': 'Last name'})
     password = db.Column(db.String(255), name='Individual Password', info={'label': 'Password'})
