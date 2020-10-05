@@ -1,6 +1,6 @@
 import models
 import forms
-from flask import render_template, request, redirect, url_for, Blueprint
+from flask import render_template, request, redirect, url_for, Blueprint, flash
 from flask_login import login_required, current_user
 from datetime import datetime
 
@@ -72,4 +72,7 @@ def post_delete(id):
     post = models.Post.query.filter(models.Post.id == id).one()
     models.db.session.delete(post)
     models.db.session.commit()
+
+    flash('Successfully deleted the post.')
+
     return redirect(url_for('admin.index'))
