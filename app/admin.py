@@ -31,10 +31,9 @@ def index(page=1):
 @login_required
 def post_edit(id=None):
     if id is None:
-        post = models.Post(created=datetime.now(), author=current_user)
+        post = models.Post(created=datetime.now(), updated=datetime.now(), author=current_user)
     else:
         post = models.Post.query.filter(models.Post.id == id).one()
-
     form = forms.Post(obj=post)
 
     t = None
@@ -54,6 +53,7 @@ def post_edit(id=None):
     if form.submit.data and form.validate_on_submit():
 
         form.populate_obj(post)
+        post.updated = datetime.now()
 
         models.db.session.add(post)
         models.db.session.commit()

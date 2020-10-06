@@ -31,6 +31,7 @@ class Post(db.Model):
     summary = db.Column(db.Text, name='Summary', info={'label': 'Summary'})
     body = db.Column(db.Text, name='Body', info={'label': 'Body'})
     created = db.Column(db.DateTime)
+    updated = db.Column(db.DateTime)
     tags = db.relationship("Tag", secondary=post_tag_table)
     author = db.relationship('User')
     author_id = db.Column(db.Integer, db.ForeignKey(User.id))

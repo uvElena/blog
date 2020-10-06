@@ -60,6 +60,7 @@ with app.app_context():
             """,
             author=user,
             created=datetime(2020, 1, 15, 10, 30) + timedelta(days=i),
+            updated=datetime(2020, 1, 15, 10, 30) + timedelta(days=i),
             tags=[tag1, tag2, tag3]
             )
         post2 = Post(
@@ -83,6 +84,7 @@ with app.app_context():
             """,
             author=user,
             created=datetime(2020, 1, 15, 10, 30) + timedelta(days=i),
+            updated=datetime(2020, 1, 15, 10, 30) + timedelta(days=i),
             tags=[tag2, tag4]
             )
         db.session.add(post)

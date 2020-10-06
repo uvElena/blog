@@ -29,8 +29,8 @@
             </div>
             <p class="card-text">{{ post.body }}</p>
             <img class="card-img-top" src="/static/img/{{ post.id }}.jpg" alt="">
-            <h4 class="card-text mt-4">Last updated 3 mins ago {{ post.created.strftime('%d-%m-%Y') }} в
-                {{ post.created.strftime('%H:%M') }}
+            <h4 class="card-text mt-4">Updated  {{ post.updated.strftime('%d-%m-%Y') }} в
+                {{ post.updated.strftime('%H:%M') }}
             </h4>
             <h4>Теги:
                 <span class="badge badge-light mt-4">
