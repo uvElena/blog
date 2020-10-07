@@ -1,5 +1,5 @@
-from app import create_app
-from config import Configuration
+from app.app import create_app
+from app.config import Configuration
 
 
 if __name__ == '__main__':

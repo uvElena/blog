@@ -1,8 +1,8 @@
-import models
-import forms
 from flask_login import login_required, login_user, logout_user
 from flask import render_template, request, redirect, url_for, Blueprint
 
+from . import models
+from . import forms
 
 main = Blueprint('main', __name__)
 

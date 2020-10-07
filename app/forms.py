@@ -1,10 +1,11 @@
-import models
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FormField, FieldList, PasswordField, FileField
 from wtforms import validators
 from wtforms_alchemy import model_form_factory
 from werkzeug.security import check_password_hash
-from models import db
+
+from . import models
+from .models import db
 
 BaseModelForm = model_form_factory(FlaskForm)
 

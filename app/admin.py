@@ -1,8 +1,9 @@
-import models
-import forms
 from flask import render_template, request, redirect, url_for, Blueprint, flash
 from flask_login import login_required, current_user
 from datetime import datetime
+
+from . import models
+from . import forms
 
 admin = Blueprint('admin', __name__)
 

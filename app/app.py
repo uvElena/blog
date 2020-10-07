@@ -1,10 +1,10 @@
-import models
 from flask import Flask
-from config import Configuration
 from flask_login import LoginManager
-from models import db
-from main import main
-from admin import admin
+from . import models
+from .config import Configuration
+from .models import db
+from .main import main
+from .admin import admin
 
 
 def create_app(config):

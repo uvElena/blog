@@ -1,8 +1,9 @@
-from app import db, create_app
-from models import Post, Tag, User
 from datetime import datetime, timedelta
-from config import Configuration
 from werkzeug.security import generate_password_hash
+
+from app.app import db, create_app
+from app.models import Post, Tag, User
+from app.config import Configuration
 
 app = create_app(Configuration)
 
