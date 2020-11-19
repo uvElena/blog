@@ -33,6 +33,13 @@
                 </div>
                 <p class="card-text">{{ post.summary }}</p>
                 <img class="card-img-top" src="/static/img/{{ post.id }}.jpg" alt="" >
+                <h4>Теги:
+                    <span class="badge badge-light mt-4">
+                        {% for tag in post.tags %}
+                            <a href="{{ url_for('main.index', tag=tag.value) }}">{{ tag.value }}</a>{{ "," if not loop.last else "" }}
+                        {% endfor %}
+                    </span>
+                </h4>
               </div>
             </div>
         </article>
