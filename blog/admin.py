@@ -1,6 +1,8 @@
 from flask import render_template, request, redirect, url_for, Blueprint, flash
 from flask_login import login_required, current_user
 from datetime import datetime
+import os
+import os.path
 
 from . import models
 from . import forms
@@ -71,6 +73,11 @@ def post_edit(id=None):
 def post_delete(id):
 
     post = models.Post.query.filter(models.Post.id == id).one()
+    img_path = f'static/img/{post.id}.jpg'
+
+    if os.path.isfile(img_path):
+        os.remove(img_path)
+
     models.db.session.delete(post)
     models.db.session.commit()
 
