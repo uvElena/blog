@@ -36,6 +36,10 @@ class Post(db.Model):
     author = db.relationship('User')
     author_id = db.Column(db.Integer, db.ForeignKey(User.id))
 
+    @property
+    def img_path(self):
+        return f'static/img/{self.id}.jpg'
+
     def __repr__(self):
         return '<Post id: {}, title: {}>'.format(self.id, self.title)
 

@@ -21,7 +21,7 @@ def index(page=1):
     posts_query = posts_query.order_by(models.Post.created.desc())
     posts = posts_query.paginate(page, 10, False)
 
-    return render_template('main/index.html', posts=posts, tags=tags)
+    return render_template('main/index.html', posts=posts, tags=tags, tag=tag)
 
 
 @main.route('/main/post/<int:id>', methods=['GET', 'POST'])

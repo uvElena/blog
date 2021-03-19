@@ -62,7 +62,8 @@ def post_edit(id=None):
         models.db.session.commit()
 
         form_img = form.image.data
-        form_img.save(f'static/img/{post.id}.jpg')
+        form_img.save(post.img_path)
+
         return redirect(url_for('admin.post_edit', id=post.id))
 
     return render_template('admin/post_edit.html', post=post, form=form)
@@ -73,10 +74,9 @@ def post_edit(id=None):
 def post_delete(id):
 
     post = models.Post.query.filter(models.Post.id == id).one()
-    img_path = f'static/img/{post.id}.jpg'
 
-    if os.path.isfile(img_path):
-        os.remove(img_path)
+    if os.path.isfile(post.img_path):
+        os.remove(post.img_path)
 
     models.db.session.delete(post)
     models.db.session.commit()
