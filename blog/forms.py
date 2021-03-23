@@ -47,7 +47,6 @@ class Post(ModelForm):
     tags = TagsList(FormField(Tag, default=lambda: models.Tag()))
     append_tag = SubmitField('Add new tag')
     submit = SubmitField('Save')
-    pop_post = SubmitField('Delete post')
     image = FileField('Image File')
 
 
