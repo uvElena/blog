@@ -35,7 +35,7 @@ def post(id):
 def login():
 
     form = forms.LoginForm()
-    print(form.password.data)
+
     if form.validate_on_submit():
 
         user = models.User.query.filter(models.User.user_name == form.user_name.data).one()

@@ -51,7 +51,7 @@ class Post(ModelForm):
 
 
 class LoginForm(FlaskForm):
-    user_name = StringField('Person code', [validators.InputRequired()])
+    user_name = StringField('User name', [validators.InputRequired()])
     password = PasswordField('Password', [validators.InputRequired()])
     submit = SubmitField('Login')
 

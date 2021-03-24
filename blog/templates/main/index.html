@@ -18,11 +18,11 @@
         <article>
             <div class="card mb-3">
               <div class="card-body">
-                <a href="{{ url_for('main.post', id=post.id) }}">
+                <a href="{{ url_for('main.post', id=post.id) }}" >
                     <h2 class="card-title">{{ post.title }}</h2>
                 </a>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-2" id="full_name">
                         <h4 class="card-text">{{ post.author.full_name }}</h4>
                     </div>
                     <div class="col-md-7">

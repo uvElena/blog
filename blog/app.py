@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
 from . import models
-from .config import Configuration
 from .models import db
 from .main import main
 from .admin import admin
@@ -9,7 +8,7 @@ from .admin import admin
 
 def create_app(config):
     app = Flask(__name__)
-    app.config.from_object(Configuration)
+    app.config.from_object(config)
 
     login_manager = LoginManager()
     login_manager.login_view = 'main.login'

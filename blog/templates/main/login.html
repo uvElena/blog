@@ -18,7 +18,7 @@
                 <div>
                     {{ form.user_name(size=30, class_='form-control' + (' is-invalid'  if form.user_name.errors else '')) }}
                 </div>
-                <div class="invalid-feedback d-block">
+                <div id="user_name_errors" class="invalid-feedback d-block">
                     {{ ', '.join(form.user_name.errors) }}
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div>
                     {{ form.password(size=30, class_='form-control' + (' is-invalid' if form.password.errors else '')) }}
                 </div>
-                <div class="invalid-feedback d-block">
+                <div id="password_errors" class="invalid-feedback d-block">
                     {{ ', '.join(form.password.errors) }}
                 </div>
             </div>

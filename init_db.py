@@ -33,8 +33,8 @@ with app.app_context():
 
     user = User(
         user_name="user1",
-        first_name="Фамилия",
-        last_name="Имя",
+        first_name="Имя",
+        last_name="Фамилия",
         password=generate_password_hash("1234")
         )
     db.session.add(user)
