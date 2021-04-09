@@ -40,6 +40,4 @@ class TestLogin(TestBase):
         self.user_login("user1", "")
 
         user_password_empty = self.driver.find_element_by_id("password").send_keys("")
-        time.sleep(5)
-
         self.assertNotEqual(user_password_empty, "")

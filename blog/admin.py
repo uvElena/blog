@@ -61,6 +61,11 @@ def post_edit(id=None):
         models.db.session.add(post)
         models.db.session.commit()
 
+        if id is None:
+            flash('The post was created successfully.')
+        else:
+            flash('Post updated successfully.')
+
         form_img = form.image.data
         form_img.save(post.img_path)
 

@@ -14,12 +14,12 @@
 
 {% block content %}
      <div class="my-4 text-right">
-        <a class="btn btn-primary" href="{{ url_for('admin.post_edit') }}">Add new post</a>
+        <a class="btn btn-primary" id="create_post" href="{{ url_for('admin.post_edit') }}">Add new post</a>
     </div>
     {% for post in posts.items %}
         <article>
             <div class="card mb-3 mt-4">
-              <div class="card-body">
+              <div class="card-body" id="post_edit">
                 <a href="{{ url_for('admin.post_edit', id=post.id) }}">
                     <h2 class="card-title">{{ post.title }}</h2>
                 </a>
@@ -27,10 +27,10 @@
               </div>
 
             </div>
-        <div class="col">
-            <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteDialog-{{ post.id }}">Delete</button>
-        </div>
-        <div class="modal fade" id="deleteDialog-{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="col">
+                <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteDialog-{{ post.id }}">Delete</button>
+            </div>
+            <div class="modal fade" id="deleteDialog-{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-body">

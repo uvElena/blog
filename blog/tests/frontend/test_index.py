@@ -21,4 +21,3 @@ class TestView(TestBase):
 
         body = self.driver.find_element_by_css_selector("p.card-text").text
         self.assertEqual(body, "Post body")
-        time.sleep(1)
