@@ -1,3 +1,5 @@
+import logging
+import os
 from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash
 from flask_testing import LiveServerTestCase
@@ -12,12 +14,15 @@ class TestConfiguration(Configuration):
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/blog.db'
     LIVESERVER_PORT = 8943
     TESTING = True
+    DEBUG = False
 
 
 class TestBase(LiveServerTestCase):
 
     def create_app(self):
         app = create_app(TestConfiguration)
+        logging.getLogger("werkzeug").setLevel(logging.ERROR)
+        os.environ['WERKZEUG_RUN_MAIN'] = 'true'
         return app
 
     def setUp(self):
@@ -39,7 +44,7 @@ class TestBase(LiveServerTestCase):
             author=user,
             created=datetime(2020, 1, 15, 10, 30) + timedelta(days=1),
             updated=datetime(2020, 1, 15, 10, 30) + timedelta(days=1),
-            )
+        )
         db.session.add(post)
         db.session.commit()
 
