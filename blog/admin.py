@@ -66,8 +66,9 @@ def post_edit(id=None):
         else:
             flash('Post updated successfully.')
 
-        form_img = form.image.data
-        form_img.save(post.img_path)
+        if form.image.data:
+            form_img = form.image.data
+            form_img.save(post.img_path)
 
         return redirect(url_for('admin.post_edit', id=post.id))
 
