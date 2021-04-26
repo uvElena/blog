@@ -36,3 +36,26 @@ class TestView(TestBase):
         time.sleep(1)
         post_count_tag = len(self.driver.find_elements_by_class_name("card-title"))
         self.assertLess(post_count_tag, post_count)
+
+    def test_pagination(self):
+        user = User.query.first()
+
+        for i in range(30):
+            post = Post(
+                title="Post title {}".format(i),
+                summary="""Post summary""",
+                body="""Post body""",
+                author=user,
+                created=datetime(2020, 1, 15, 10, 30),
+                updated=datetime(2020, 1, 15, 10, 30),
+            )
+            db.session.add(post)
+        db.session.commit()
+        self.driver.refresh()
+
+        title_first_page = self.driver.find_element_by_class_name("card-title").text
+        self.driver.find_element_by_id("next_page").click()
+        time.sleep(1)
+        title_second_page = self.driver.find_element_by_class_name("card-title").text
+
+        self.assertNotEqual(title_first_page, title_second_page)
