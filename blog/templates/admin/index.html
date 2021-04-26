@@ -19,7 +19,7 @@
     {% for post in posts.items %}
         <article>
             <div class="card mb-3 mt-4">
-              <div class="card-body" id="post_edit">
+              <div class="card-body">
                 <a href="{{ url_for('admin.post_edit', id=post.id) }}">
                     <h2 class="card-title">{{ post.title }}</h2>
                 </a>

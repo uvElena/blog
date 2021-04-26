@@ -1,12 +1,13 @@
 import logging
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
+
 from werkzeug.security import generate_password_hash
 from flask_testing import LiveServerTestCase
 from selenium import webdriver
 
 from blog.app import create_app
-from blog.models import db, User, Post
+from blog.models import db, User, Post, Tag
 from blog.config import Configuration
 
 
@@ -29,6 +30,16 @@ class TestBase(LiveServerTestCase):
         db.drop_all()
         db.create_all()
 
+        tag1 = Tag(
+            value="tag1"
+        )
+        db.session.add(tag1)
+
+        tag2 = Tag(
+            value="tag2"
+        )
+        db.session.add(tag2)
+
         user = User(
             user_name="user1",
             first_name="First Name",
@@ -42,10 +53,21 @@ class TestBase(LiveServerTestCase):
             summary="""Post summary""",
             body="""Post body""",
             author=user,
-            created=datetime(2020, 1, 15, 10, 30) + timedelta(days=1),
-            updated=datetime(2020, 1, 15, 10, 30) + timedelta(days=1),
+            created=datetime(2020, 1, 15, 10, 30),
+            updated=datetime(2020, 1, 15, 10, 30),
         )
+        post_with_tags = Post(
+            title="Second post title",
+            summary="""Second post summary""",
+            body="""Second post body""",
+            author=user,
+            created=datetime(2020, 1, 15, 10, 30),
+            updated=datetime(2020, 1, 15, 10, 30),
+            tags=[tag1, tag2]
+        )
+
         db.session.add(post)
+        db.session.add(post_with_tags)
         db.session.commit()
 
         self.driver = webdriver.Chrome()

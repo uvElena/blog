@@ -12,6 +12,7 @@ class TestLogin(TestBase):
         self.driver.find_element_by_id("user_name").send_keys(user)
         self.driver.find_element_by_id("password").send_keys(password)
         self.driver.find_element_by_id("submit").click()
+        time.sleep(1)
 
     def test_login(self):
         self.assertIn(url_for('main.login'), self.driver.current_url)
@@ -38,6 +39,5 @@ class TestLogin(TestBase):
 
     def test_login_password_empty(self):
         self.user_login("user1", "")
-
         user_password_empty = self.driver.find_element_by_id("password").send_keys("")
         self.assertNotEqual(user_password_empty, "")
