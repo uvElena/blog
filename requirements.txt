@@ -5,5 +5,5 @@ flask-wtf
 flask-sqlalchemy
 sqlalchemy
 selenium
-nose2
+pytest
 flask-testing
