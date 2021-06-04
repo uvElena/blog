@@ -1,0 +1,5 @@
+services:
+  blog:
+    build: .
+    volumes:
+      - ./state:/app/state
