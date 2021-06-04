@@ -4,4 +4,5 @@ class Configuration(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///blog.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///../state/blog.db'
+    IMAGE_FOLDER = '../state/images'

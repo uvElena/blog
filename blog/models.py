@@ -38,7 +38,7 @@ class Post(db.Model):
 
     @property
     def img_path(self):
-        return f'static/img/{self.id}.jpg'
+        return f'main/img/{self.id}.jpg'
 
     def __repr__(self):
         return '<Post id: {}, title: {}>'.format(self.id, self.title)

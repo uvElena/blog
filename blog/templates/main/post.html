@@ -32,7 +32,7 @@
                 </div>
             </div>
             <p class="card-text">{{ post.body }}</p>
-            <img class="card-img-top" src="/static/img/{{ post.id }}.jpg" alt="">
+            <img class="card-img-top" src="{{ url_for('main.image', name='{}.jpg'.format(post.id)) }}" alt="">
             <h4 class="card-text mt-4">Updated  {{ post.updated.strftime('%d-%m-%Y') }} в
                 {{ post.updated.strftime('%H:%M') }}
             </h4>

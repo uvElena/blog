@@ -1,5 +1,6 @@
 from flask_login import login_required, login_user, logout_user
-from flask import render_template, request, redirect, url_for, Blueprint
+from flask import render_template, request, redirect, url_for
+from flask import Blueprint, send_from_directory, current_app
 
 from . import models
 from . import forms
@@ -52,3 +53,10 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.login'))
+
+
+@main.route("/main/img/<path:name>")
+def image(name):
+    return send_from_directory(
+        current_app.config['IMAGE_FOLDER'], name
+    )
